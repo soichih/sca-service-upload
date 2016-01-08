@@ -1,0 +1,17 @@
+{
+    "files": [
+        {
+            "type": "text/plain",
+            "size": 710009,
+            "filename": "small2.fasta.txt"
+        },
+        {
+            "type": "text/plain",
+            "size": 232940,
+            "filename": "small.fasta.txt"
+        }
+    ],
+    "type": "bio/fasta",
+    "name": "tes"
+}
+
