@@ -1,1 +1,1 @@
-[{"type": "bio/fasta", "whaterver": "test"}]
+[{"fasta": {"filename": "test.nucl.fasta", "type": "nucl", "size": 384}, "type": "bio/fasta"}, {"fasta": {"filename": "test.prot.fasta", "type": "prot", "size": 3304}, "type": "bio/fasta"}]

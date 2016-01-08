@@ -2,13 +2,13 @@
     "files": [
         {
             "type": "text/plain",
-            "size": 710009,
-            "filename": "small2.fasta.txt"
+            "size": 384,
+            "filename": "test.nucl.fasta"
         },
         {
             "type": "text/plain",
-            "size": 232940,
-            "filename": "small.fasta.txt"
+            "size": 3304,
+            "filename": "test.prot.fasta"
         }
     ],
     "type": "bio/fasta",

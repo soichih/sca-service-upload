@@ -14,10 +14,39 @@ import os
 config_json=open("config.json").read()
 config=json.loads(config_json)
 
-#TODO..
+products = []
 
-product = {'type': config["type"], 'whaterver': 'test'}
+if config["type"] == "bio/fasta":
+    #create different products for each fasta file
+    #also, for each file, "guess" data type (nucl, or prot)
+    for file in config["files"]:
+        with open(file["filename"], "r") as f:
+            count=0
+            prot_count=0
+            while True:
+                line = f.readline()
+                if line == '':
+                    break
+                if line[0] == '>':
+                    continue 
+                count+=1
+                if count > 100:
+                    break
+                prots = set('BDEFHIJKLMNOPQRSUVWXYZ')
+                if any((c in prots) for c in line.upper()):
+                    prot_count+=1
+
+            if prot_count/count > 0.999:
+                file["type"] = "prot"
+            else:
+                file["type"] = "nucl"
+        #just store all files as input
+        products.append({'type': config["type"], 'fasta': file})
+else:
+    #just store all files as input
+    products.append({'type': config["type"], 'files': config["files"]})
+
 with open('products.json', 'w') as out:
-    json.dump([product], out)
+    json.dump(products, out)
 
 
