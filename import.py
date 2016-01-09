@@ -20,6 +20,7 @@ if config["type"] == "bio/fasta":
     #create different products for each fasta file
     #also, for each file, "guess" data type (nucl, or prot)
     for file in config["files"]:
+        print file["filename"]
         with open(file["filename"], "r") as f:
             count=0
             prot_count=0
@@ -36,10 +37,13 @@ if config["type"] == "bio/fasta":
                 if any((c in prots) for c in line.upper()):
                     prot_count+=1
 
-            if prot_count/count > 0.999:
+            per=prot_count/count*100
+            print "chance of this sequence being protein sequence: ",per
+            if per > 99.9:
                 file["type"] = "prot"
             else:
                 file["type"] = "nucl"
+            
         #just store all files as input
         products.append({'type': config["type"], 'fasta': file})
 else:
