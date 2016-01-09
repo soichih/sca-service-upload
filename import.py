@@ -22,8 +22,8 @@ if config["type"] == "bio/fasta":
     for file in config["files"]:
         print file["filename"]
         with open(file["filename"], "r") as f:
-            count=0
-            prot_count=0
+            count=0.0
+            prot_count=0.0
             while True:
                 line = f.readline()
                 if line == '':
@@ -39,10 +39,11 @@ if config["type"] == "bio/fasta":
 
             per=prot_count/count*100
             print "chance of this sequence being protein sequence: ",per
-            if per > 99.9:
+            if per > 95:
                 file["type"] = "prot"
             else:
                 file["type"] = "nucl"
+            print "judging as",file["type"]
             
         #just store all files as input
         products.append({'type': config["type"], 'fasta': file})
